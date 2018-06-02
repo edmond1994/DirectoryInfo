@@ -1,13 +1,11 @@
 # DirectoryInfo
 
-WORK IN PROGRESS
-
-Используется версия MySQL не ниже 5.5.27 (порт сервера 3306).
-
 При разработке использовался JDK версии 1.8.0_152.
 
-Следует создать схему directoryinfo и для данной схемы выполнить следующий скрипт:
+1) Используется версия MySQL не ниже 5.5.27 (порт сервера 3306).
 
+Следует создать схему directoryinfo и для данной схемы выполнить следующий скрипт:
+```
   DROP TABLE IF EXISTS content_records;
   DROP TABLE IF EXISTS directory_records;
 
@@ -33,9 +31,7 @@ WORK IN PROGRESS
       REFERENCES directory_records(id)
       ON DELETE CASCADE)
   DEFAULT CHARACTER SET = utf8;
-  
-Используется версия Maven не ниже 3 (в процессе разработки использовалась 3.3.9) и Spring Boot 1.5.8
-В корневом каталогие приложения (DirectoriesInfo) выполнить команду `mvn spring-boot:run`.
+```
+2) Используется версия Maven не ниже 3 (в процессе разработки использовалась 3.3.9) и Spring Boot 1.5.8
+В корневом каталогие приложения выполнить команду `mvn spring-boot:run`.
 Приложение будет запущено по адресу `localhost:8080/dirs_and_files`
-  
-
