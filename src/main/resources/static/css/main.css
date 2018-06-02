@@ -1,0 +1,96 @@
+* {
+    font-size: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.directory-error {
+    color:  #ff4500;
+}
+
+/* Фон модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    text-align: center;
+
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
+
+    /*Окно закрывает весь экран*/
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Модальное окно */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #777;
+    min-width: 40%;
+    max-height: 70%;
+    display:inline-block;
+    text-align: left;
+}
+#content-list  {
+    overflow-y: scroll;
+    max-height: 40%;
+}
+
+/* Закрывающая кнопка 'X' */
+.modal-content-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-content-close:hover,
+.modal-content-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content-close-button {
+    float: right;
+}
+
+/* Таблицы */
+table, td, th {
+    border: solid #000;
+    border-width: 0 1px;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    border-width: 1px;
+    width: 80%;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr:nth-child(odd){
+    background-color: #eeeeee
+}
+
+
+tr > th {
+    background-color: #b9b9b9;
+    border-width: 1px;
+}
+
+#add-form-input {
+    display:block
+}
+
+.td-button {
+    text-align: center;
+}
