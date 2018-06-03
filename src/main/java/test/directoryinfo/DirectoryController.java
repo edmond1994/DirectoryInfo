@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import test.directoryinfo.dao.ContentDAO;
 import test.directoryinfo.dao.DirectoryDAO;
 import test.directoryinfo.model.Content;
@@ -80,6 +78,4 @@ public class DirectoryController {
 
 
     }
-
-
 }

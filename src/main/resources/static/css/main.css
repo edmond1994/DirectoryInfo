@@ -1,10 +1,20 @@
 * {
-    font-size: 100%;
     font-family: Arial, sans-serif;
 }
 
 .directory-error {
     color:  #ff4500;
+}
+
+.list-title {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+button,
+input[type=submit],
+input[type=text] {
+    font-size: 110%;
 }
 
 /* Фон модального окна */

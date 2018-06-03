@@ -1,11 +1,10 @@
 package test.directoryinfo.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import test.directoryinfo.utils.GeneralUtil;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Объект с информацией о добавленной директории
@@ -15,7 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Directory {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO) //persistence provider should pick an appropriate strategy for the particular database
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     private long id;
 
@@ -146,7 +145,7 @@ public class Directory {
 
     public String getTotalSize() {
 
-        return GeneralUtil.humanReadableByteCount(totalSize, true);
+        return GeneralUtil.humanReadableByteCount(totalSize);
 
     }
 

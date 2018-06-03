@@ -27,7 +27,6 @@ public class GeneralUtil {
 
     /**
      * Получение читаемого формата размера файла размером в bytes байтов, при использовании метрической системы internationalSystem=true
-     * NOTE: MAYBE DO THE SAME TO OTHER FIELDS?
      */
     public static String humanReadableByteCount(long bytes, boolean internationalSystem) {
         int measure = internationalSystem ? 1000 : 1024; //Total Commander uses 1024 without i
@@ -38,14 +37,19 @@ public class GeneralUtil {
         }
 
         if (bytes < measure) {
-            return bytes + "b";
+            return bytes + "B";
         }
 
         int exp = (int) (Math.log(bytes) / Math.log(measure));
 
-        String pre = (internationalSystem ? "kMGTPE" : "KMGTPE").charAt(exp-1) + (internationalSystem ? "" : "i") + "b";
+        String pre = (internationalSystem ? "kMGTPE" : "KMGTPE").charAt(exp-1) + (internationalSystem ? "" : "i") + "B";
 
         return pringFileLength(bytes / Math.pow(measure, exp))+pre;
+    }
+
+
+    public static String humanReadableByteCount(long bytes) {
+        return humanReadableByteCount(bytes, true);
     }
 
     /**
@@ -58,8 +62,6 @@ public class GeneralUtil {
         }
         else {
             return numFormat.format(num);
-            //return String.format( "%.2f",num); //
-            //return String.format("%s",num);
         }
     }
 }

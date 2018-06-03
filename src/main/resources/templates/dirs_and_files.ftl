@@ -27,49 +27,46 @@
                     cache: false,
                     timeout : 100000,
                     success: function(result) {
-                        if (result.ajaxStatus == "Done") {
+                        $("#content-title").html("<h2>" + itemtext + "</h2>");
+                        if (result.ajaxStatus === "Done") {
                             $('#content-list').empty();
-
-                            var contentTable = "<table class='dirtable'>";
-                            contentTable += "<thead><tr><th>Файл</th><th>Размер</th></tr></thead><tbody>";
-                            $.each(result.data, function (i, file) {
-                                contentTable += "<tr><td>" + file.name + "</td><td>" + file.size + "</td></tr>";
-                            });
-                            contentTable +="</tbody></table>";
-                            $('#content-list').append(contentTable);
+                            if (result.data.length > 0) {
+                                var contentTable = "<table class='dirtable'>";
+                                contentTable += "<thead><tr><th>Файл</th><th>Размер</th></tr></thead><tbody>";
+                                $.each(result.data, function (i, file) {
+                                    contentTable += "<tr><td>" + file.name + "</td><td>" + file.size + "</td></tr>";
+                                });
+                                contentTable += "</tbody></table>";
+                                $('#content-list').append(contentTable);
+                            } else {
+                                $('#content-list').append("Директория пуста");
+                            }
 
                         } else {
                             $("#content-list").html("<strong>Ошибка получения файлов и директорий!</strong>");
 
                         }
+                        //Показ модального окна
+                        $(".modal").show();
+                    },
+                    error: function (errorXMLHttpRequest, exception) {
+                        var message = '';
+                        if (errorXMLHttpRequest.status === 0) {
+                            message = 'Сервер не отвечает [код 0].';
+                        } else if (exception === 'abort') {
+                            message = 'Запрос был отменен.';
+                        } else if (exception === 'timeout') {
+                            message = 'Произошел тайм-аут запроса.';
+                        }  else {
+                            message = 'Неизвестная ошибка: \n' + errorXMLHttpRequest.responseText;
+                        }
+                        $("#content-title").html("<h2>" + "Ошибка" + "</h2>");
+                        $('#content-list').empty();
+                        $('#content-list').append(message);
+                        //Показ модального окна
+                        $(".modal").show();
                     }
-//                },
-//                error: function (jqXHR, exception) {
-//                    var msg = '';
-//                    if (jqXHR.status === 0) {
-//                        msg = 'Not connect.\n Verify Network.';
-//                    } else if (jqXHR.status == 404) {
-//                        msg = 'Requested page not found. [404]';
-//                    } else if (jqXHR.status == 500) {
-//                        msg = 'Internal Server Error [500].';
-//                    } else if (exception === 'parsererror') {
-//                        msg = 'Requested JSON parse failed.';
-//                    } else if (exception === 'timeout') {
-//                        msg = 'Time out error.';
-//                    } else if (exception === 'abort') {
-//                        msg = 'Ajax request aborted.';
-//                    } else {
-//                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-//                    }
-//                   alert(msg);
-//                    $('#content-list').html(msg);
-//                }
-
                 });
-
-                //Показ модального окна
-                $("#content-title").html("<h2>" + itemtext + "</h2>");
-                $(".modal").show();
             });
 
 
@@ -116,20 +113,23 @@
 
 
      <br/>
+
+<#if directories?? && directories?size != 0>
+    <span class = "list-title">Список директорий и файлов</span>
+    <br/><br/>
     <table class="dirtable">
         <thead>
-             <tr>
-                <th>Дата</th>
-                <th>Базовая директория</th>
-                <th>Директорий</th>
-                <th>Файлов</th>
-                <th>Суммарный размер файлов</th>
-                <th>  </th>
-            </tr>
+        <tr>
+            <th>Дата</th>
+            <th>Базовая директория</th>
+            <th>Директорий</th>
+            <th>Файлов</th>
+            <th>Суммарный размер файлов</th>
+            <th>  </th>
+        </tr>
         </thead>
         <tbody>
-<#if directories?? && directories?size != 0>
-    <#list directories as directory>
+            <#list directories as directory>
             <tr>
                 <td class="table-addtime">${directory.addTime?string["dd.MM.yyyy HH:mm"]}</td>
                 <td class="table-path">${directory.path}</td>
@@ -138,19 +138,13 @@
                 <td class="table-size">${directory.totalSize}</td>
                 <td class="td-button"><button value=${directory.id} class="get-content-button">Файлы</button></td>
             </tr>
-    </#list>
-<#else>
-            <tr>
-                <td>Список пуст</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-</#if>
+            </#list>
         </tbody>
-    </table>
+     </table>
+<#else>
+      <span class = "list-title"><i>Список директорий пуст</i></span>
+</#if>
+
 
 </div>
 
