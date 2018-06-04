@@ -18,18 +18,26 @@ public class CheckDirectoryUtil {
         File[] files = directoryFile.listFiles();
 
         long fileSize; //переменная хранения длин файлов
+        boolean isDirectory; //переменная для проверки, работаем ли мы с директорией
+        boolean fileIsNotHidden; //текущий файл не скрыт
 
         if (files != null) {
             for (File currentFile : files) {
-                exploredDirectory.incrementFileCount(1);
+                fileIsNotHidden = !currentFile.isHidden();
                 fileSize = currentFile.length();
+                isDirectory = currentFile.isDirectory();
 
-                topLevelContent.add(new Content(currentFile.getName(), (fileSize > 0 ? fileSize : -1L)));
+                if (fileIsNotHidden) {
+                    exploredDirectory.incrementFileCount(1);
+                    topLevelContent.add(new Content(currentFile.getName(), (isDirectory ? -1L : fileSize)));
+                }
                 exploredDirectory.increaseTotalSize(fileSize);
 
                 //Спуск вниз по директории
-                if (currentFile.isDirectory()) {
-                    exploredDirectory.incrementDirCount(1);
+                if (isDirectory) {
+                    if(fileIsNotHidden) {
+                        exploredDirectory.incrementDirCount(1);
+                    }
                     getDirectorySubLevelInfo(currentFile, exploredDirectory);
                 }
             }
@@ -46,17 +54,23 @@ public class CheckDirectoryUtil {
         File[] files = directoryFile.listFiles();
 
         long fileSize; //переменная хранения длин файлов
+        boolean fileIsNotHidden; //текущий файл не скрыт
 
         if (files != null) {
             for (File currentFile : files) {
-                exploredDirectory.incrementFileCount(1);
+                fileIsNotHidden = !currentFile.isHidden();
                 fileSize = currentFile.length();
+                if (fileIsNotHidden) {
+                    exploredDirectory.incrementFileCount(1);
+                }
 
                 exploredDirectory.increaseTotalSize(fileSize);
 
                 //Спуск вниз по директории
                 if (currentFile.isDirectory()) {
-                    exploredDirectory.incrementDirCount(1);
+                    if (fileIsNotHidden) {
+                        exploredDirectory.incrementDirCount(1);
+                    }
                     getDirectorySubLevelInfo(currentFile, exploredDirectory);
                 }
             }

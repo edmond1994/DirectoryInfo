@@ -175,4 +175,18 @@ public class Content implements Comparable<Content>{
                 thisMatcher.hitEnd() ? -1 : +1;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Content content = (Content) o;
+
+        if (id != content.id) return false;
+        if (size != content.size) return false;
+        if (directoryId != content.directoryId) return false;
+        return name != null ? name.equals(content.name) : content.name == null;
+    }
+
+
 }
