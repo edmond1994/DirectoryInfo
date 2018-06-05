@@ -8,6 +8,7 @@ import java.util.List;
 
 public class TestContentSort {
 
+    private static final boolean printTestDeclarations = true;
 
     /*
      * Проверка для директорий
@@ -16,6 +17,9 @@ public class TestContentSort {
     public void testDirectoryAndFileGreater() {
         Content c1 = new Content("m2.txt",100,0);
         Content c2 = new Content("onedir",-1,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -23,6 +27,9 @@ public class TestContentSort {
     public void testDirectoryAndFileLesser() {
         Content c1 = new Content("onedir",-1,0);
         Content c2 = new Content("m2.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "<");
+        }
         Assert.assertTrue(c1.compareTo(c2) < 0);
     }
 
@@ -30,6 +37,9 @@ public class TestContentSort {
     public void testDirectoriesEqual() {
         Content c1 = new Content("onedir",-1,0);
         Content c2 = new Content("onedir",-1,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "==");
+        }
         Assert.assertTrue(c1.compareTo(c2) == 0);
     }
 
@@ -38,6 +48,9 @@ public class TestContentSort {
     public void testDirectoriesGreater() {
         Content c1 = new Content("onedir12",-1,0);
         Content c2 = new Content("onedir11",-1,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -45,6 +58,9 @@ public class TestContentSort {
     public void testDirectoriesLesser() {
         Content c1 = new Content("onedir12_1",-1,0);
         Content c2 = new Content("onedir13",-1,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "<");
+        }
         Assert.assertTrue(c1.compareTo(c2) < 0);
     }
 
@@ -56,6 +72,9 @@ public class TestContentSort {
 
         Content c1 = new Content("mine.txt",100,0);
         Content c2 = new Content("mine.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "==");
+        }
         Assert.assertTrue(c1.compareTo(c2) == 0);
     }
 
@@ -64,6 +83,9 @@ public class TestContentSort {
 
         Content c1 = new Content("mine.txt",100,0);
         Content c2 = new Content("MINE.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "==");
+        }
         Assert.assertTrue(c1.compareTo(c2) == 0);
     }
 
@@ -72,6 +94,9 @@ public class TestContentSort {
 
         Content c1 = new Content("one.txt",100,0);
         Content c2 = new Content("another.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "!=");
+        }
         Assert.assertTrue(c1.compareTo(c2) != 0);
     }
 
@@ -83,6 +108,9 @@ public class TestContentSort {
 
         Content c1 = new Content("example1.txt",100,0);
         Content c2 = new Content("example.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -92,6 +120,9 @@ public class TestContentSort {
 
         Content c1 = new Content("mine.txt",100,0);
         Content c2 = new Content("m2.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -100,6 +131,9 @@ public class TestContentSort {
 
         Content c1 = new Content("lord.txt",100,0);
         Content c2 = new Content("Yard.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "<");
+        }
         Assert.assertTrue(c1.compareTo(c2) < 0);
     }
 
@@ -108,6 +142,9 @@ public class TestContentSort {
 
         Content c1 = new Content("m2_1.txt",100,0);
         Content c2 = new Content("m2.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -116,6 +153,9 @@ public class TestContentSort {
 
         Content c1 = new Content("m1_1.txt",100,0);
         Content c2 = new Content("m00002.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "<");
+        }
         Assert.assertTrue(c1.compareTo(c2) < 0);
     }
 
@@ -125,6 +165,9 @@ public class TestContentSort {
 
         Content c1 = new Content("M1_1.txt",100,0);
         Content c2 = new Content("yard.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "<");
+        }
         Assert.assertTrue(c1.compareTo(c2) < 0);
     }
 
@@ -133,6 +176,9 @@ public class TestContentSort {
 
         Content c1 = new Content("letter.txt",100,0);
         Content c2 = new Content("D2.txt",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -144,6 +190,9 @@ public class TestContentSort {
 
         Content c1 = new Content("letter.txt",100,0);
         Content c2 = new Content("letter.pdf",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -152,6 +201,9 @@ public class TestContentSort {
 
         Content c1 = new Content("letter.a1",100,0);
         Content c2 = new Content("letter.a2",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, "<");
+        }
         Assert.assertTrue(c1.compareTo(c2) < 0);
     }
 
@@ -160,6 +212,9 @@ public class TestContentSort {
 
         Content c1 = new Content("letter.extension",100,0);
         Content c2 = new Content("letter",100,0);
+        if (printTestDeclarations) {
+            printComparisonTest(c1, c2, ">");
+        }
         Assert.assertTrue(c1.compareTo(c2) > 0);
     }
 
@@ -189,6 +244,10 @@ public class TestContentSort {
                 new Content("f0008.doc", 26780197, 0),
                 new Content("function.cpp", 3570, 0)
         );
+
+        if (printTestDeclarations) {
+            printSortTest(expected, actual);
+        }
 
         Collections.sort(actual);
         Assert.assertArrayEquals(expected.toArray(), actual.toArray());
@@ -223,6 +282,10 @@ public class TestContentSort {
                 new Content("function.cpp", 3570, 0)
         );
 
+        if (printTestDeclarations) {
+            printSortTest(expected, actual);
+        }
+
         Collections.sort(actual);
         Assert.assertArrayEquals(expected.toArray(), actual.toArray());
 
@@ -251,8 +314,28 @@ public class TestContentSort {
                 new Content("images1.rar", 10000, 0)
         );
 
+        if (printTestDeclarations) {
+            printSortTest(expected, actual);
+        }
+
         Collections.sort(actual);
         Assert.assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+
+    private void printComparisonTest(Content c1, Content c2, String signString) {
+
+        System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ": " + c1.printContentName() +  " " + signString + " " + c2.printContentName());
+        System.out.println();
+
+    }
+
+    private void printSortTest(List<Content> expected,  List<Content> actual) {
+        System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName() + ": ");
+        actual.stream().map(Content::printContentName).forEachOrdered(System.out::println);
+        System.out.println("\n---->\n");
+        expected.stream().map(Content::printContentName).forEachOrdered(System.out::println);
+        System.out.println();
     }
 
 }

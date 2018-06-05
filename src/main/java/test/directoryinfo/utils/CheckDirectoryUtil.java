@@ -31,7 +31,6 @@ public class CheckDirectoryUtil {
                     exploredDirectory.incrementFileCount(1);
                     topLevelContent.add(new Content(currentFile.getName(), (isDirectory ? -1L : fileSize)));
                 }
-                exploredDirectory.increaseTotalSize(fileSize);
 
                 //Спуск вниз по директории
                 if (isDirectory) {
@@ -39,10 +38,12 @@ public class CheckDirectoryUtil {
                         exploredDirectory.incrementDirCount(1);
                     }
                     getDirectorySubLevelInfo(currentFile, exploredDirectory);
+                } else {
+                    exploredDirectory.increaseTotalSize(fileSize);
                 }
             }
         }
-
+        System.out.println(exploredDirectory.getTotalSizeBytes());
         //Вычет из общего числа файлов числа директорий
         exploredDirectory.incrementFileCount(-exploredDirectory.getDirCount());
     }
@@ -53,25 +54,14 @@ public class CheckDirectoryUtil {
     private static void getDirectorySubLevelInfo(File directoryFile, Directory exploredDirectory){
         File[] files = directoryFile.listFiles();
 
-        long fileSize; //переменная хранения длин файлов
-        boolean fileIsNotHidden; //текущий файл не скрыт
-
         if (files != null) {
             for (File currentFile : files) {
-                fileIsNotHidden = !currentFile.isHidden();
-                fileSize = currentFile.length();
-                if (fileIsNotHidden) {
-                    exploredDirectory.incrementFileCount(1);
-                }
-
-                exploredDirectory.increaseTotalSize(fileSize);
 
                 //Спуск вниз по директории
                 if (currentFile.isDirectory()) {
-                    if (fileIsNotHidden) {
-                        exploredDirectory.incrementDirCount(1);
-                    }
                     getDirectorySubLevelInfo(currentFile, exploredDirectory);
+                } else {
+                    exploredDirectory.increaseTotalSize(currentFile.length());
                 }
             }
         }

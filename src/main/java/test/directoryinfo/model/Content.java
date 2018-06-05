@@ -20,6 +20,7 @@ public class Content implements Comparable<Content>{
     //Выражения для отделения расширения файла от его имени
     private static final String fileSplitExpression = "\\.(?=[^\\.]+$)";
 
+    private static final String directoryLocalization = "[DIR]";
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -95,6 +96,7 @@ public class Content implements Comparable<Content>{
     {
         return size;
     }
+
     public void setSize(long size) {
         this.size = size;
     }
@@ -106,6 +108,11 @@ public class Content implements Comparable<Content>{
 
     public void setDirectoryId(long directoryId) {
         this.directoryId = directoryId;
+    }
+
+
+    public String printContentName() {
+        return name + ((size < 0)? directoryLocalization : "");
     }
 
     /**
